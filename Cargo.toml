@@ -1,0 +1,59 @@
+[package]
+name = "no_loose_threads"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0 OR CC0-1.0"
+
+# Compile with Performance Optimizations:
+# https://bevyengine.org/learn/book/getting-started/setup/#compile-with-performance-optimizations
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+[dependencies.bevy]
+version = "0.12.1"
+# Disable default features since using bevy_kira_audio instead
+default-features = false
+features = [
+	# Bevy functionality:
+	"bevy_asset",			# Assets management
+	"bevy_winit",			# Window management
+	"bevy_render",			# Rendering framework core
+	"bevy_core_pipeline",	# Common rendering abstractions
+	"bevy_sprite",			# 2D (sprites) rendering
+	"bevy_text",			# Text/font rendering
+	"animation",			# Animation support
+	#"filesystem_watcher",	# Asset hot-reloading
+	#"default_font",		# Embed a minimal default font for text/UI
+
+	# File formats:
+	"png",					# PNG image format for simple 2D images
+
+	# Platform-specific:
+	"x11",					# Linux: Support X11 windowing system
+	"wayland",				# Linux: Support Wayland windowing system
+	"webgl2",				# Web: use WebGL2 instead of WebGPU
+]
+
+[dependencies.bevy_kira_audio]
+version = "0.18.0"
+default-features = false
+features = [
+#	"wav",
+#	"flac",
+#	"mp3",
+	"ogg",
+#	"settings_loader",
+]
+
+[dependencies]
+rand = "0.8.5"
+# bevy_pkv = "0.8.0"
+# serde = "1.0.183"
+# TODO: REMOVE FOR RELEASE BUILD OR SMTH
+bevy_editor_pls = "0.6"

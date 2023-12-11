@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>No Loose Threads</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="index.css" rel="stylesheet" />
+</head>
+
+<body style="margin: 0px;" oncontextmenu="return false;">
+	<canvas id="canvas"></canvas>
+	<script type="module">
+		import './restart-audio-context.js'
+		import init from './bevy_game.js'
+
+		init().catch((error) => {
+		if (!error.message.startsWith("Using exceptions for control flow, don't mind me. This isn't actually an error!")) {
+			throw error;
+		}
+		});
+  	</script>
+</body>
+
+</html>
